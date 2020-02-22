@@ -1,0 +1,39 @@
+{
+  "name": "gree-manage-system",
+  "version": "4.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "awe-dnd": "^0.3.4",
+    "axios": "^0.18.0",
+    "babel-cli": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "echarts": "^4.2.1",
+    "element-ui": "^2.8.2",
+    "mavon-editor": "^2.6.17",
+    "quill-image-resize-module": "^3.0.0",
+    "v-charts": "^1.19.0",
+    "vue": "^2.6.10",
+    "vue-baidu-map": "^0.21.22",
+    "vue-cropperjs": "^3.0.0",
+    "vue-i18n": "^8.10.0",
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.0.1",
+    "vue-schart": "^1.0.0",
+    "vuedraggable": "^2.17.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  }
+}
