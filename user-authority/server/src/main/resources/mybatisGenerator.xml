@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="biz" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.mysql.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.mysql.PaginationPlugin"/>
+
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://172.28.21.243:3306/user_authority?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;useSSL=false&amp;serverTimezone=GMT%2B8"
+                        userId="root"
+                        password="123456"/>
+
+        <javaModelGenerator targetPackage="com.gree.cdsp.omp.model"
+                            targetProject="../cdsp_omp/src/main/java/">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="generate"
+                         targetProject="../cdsp_omp/src/main/resources/mapper"/>
+
+        <javaClientGenerator targetPackage="com.gree.cdsp.omp.mapper.generate"
+                             targetProject="src/main/java/" type="XMLMAPPER"/>
+
+        <table tableName="user" domainObjectName="UserEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="role" domainObjectName="RoleEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="menu" domainObjectName="MenuEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="role_menu" domainObjectName="RoleMenuEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="user_role" domainObjectName="UserRoleEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="permission" domainObjectName="PermissionEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+        <table tableName="role_permission" domainObjectName="RolePermissionEntity" schema="general"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+    </context>
+</generatorConfiguration>
