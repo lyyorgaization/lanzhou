@@ -8,7 +8,7 @@ module.exports = {
                 target: 'http://127.0.0.1:10010/',
                 changeOrigin: true
             },
-            '/data':{
+            '/data': {
                 target: 'http://127.0.0.1:10020/',
                 changeOrigin: true
             }
@@ -21,5 +21,5 @@ module.exports = {
                 'Quill': 'quill/dist/quill.js'
             })
         ]
-    }
+    },
 };
