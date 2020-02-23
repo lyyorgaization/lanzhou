@@ -29,11 +29,11 @@ public class DataController {
         DataStatisticEntity statistic = dataService.getStatistic(dto.getType(), dto.getHours());
         DataStatisticVo vo = new DataStatisticVo();
         BeanUtils.copyProperties(statistic, vo);
-        Float last = dataService.getLast(dto.getType());
+        String last = dataService.getLast(dto.getType());
         vo.setLast(last);
         return Response.success(vo);
     }
-
+    @RequestMapping("/getSeries")
     public Response<List<SeriesVo>> getSeries(@RequestBody DataStatisticDto dto) {
         List<SeriesVo> series = dataService.getSeries(dto.getType(), dto.getHours());
         return Response.success(series);

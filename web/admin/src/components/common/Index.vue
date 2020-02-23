@@ -1,15 +1,19 @@
 <template>
     <div class="container">
-        <!-- <div class="map">
+        <div class="map" v-show="showMap">
             <el-radio v-model="mapType" label="BMAP_NORMAL_MAP">普通视图</el-radio>
             <el-radio v-model="mapType" label="BMAP_SATELLITE_MAP">卫星视图</el-radio>
             <el-radio v-model="mapType" label="BMAP_HYBRID_MAP">卫星路网混合图</el-radio>
             <baidu-map class="bmView" :map-type="mapType" :scroll-wheel-zoom="true" :center="location" :zoom="zoom"
-                 ak="W3snqVzGLE554YKO8azARWwWpG5vKYqI">
-                <bm-boundary :name="location" :strokeWeight="2" strokeColor="blue" :fillOpacity="0"></bm-boundary>
+                ak="W3snqVzGLE554YKO8azARWwWpG5vKYqI">
+                <bm-boundary name="甘肃省" :strokeWeight="2" strokeColor="blue" :fillOpacity="0"></bm-boundary>
+                <bm-marker :position="{lat: 35.78786946, lng: 103.98119978 }" :dragging="true"
+                    animation="BMAP_ANIMATION_BOUNCE" @click="markClick">
+                </bm-marker>
+
             </baidu-map>
-        </div> -->
-        <div style="width:100%">
+        </div>
+        <div style="width:100%" v-show="!showMap">
             <el-row>
                 <el-col :span="12" style="padding:10px">
                     <el-card header="简介">
@@ -33,14 +37,116 @@
                     </el-card>
                 </el-col>
             </el-row>
-            <el-card header="设备基本信息" style="margin:10px">
+            <el-card header="设备基本信息" style="margin:10px" class="sensor-info">
+                <el-row>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('空气温度传感器','t1')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <img src="../../assets/img/sensor/air_temperature.png" class="image">
+                                <div style="padding: 14px;">
+                                    <span>空气温度传感器</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.t1.last}}</span></el-form-item>
+
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('土壤温湿度传感器','humidity1_mean')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <img src="../../assets/img/sensor/soil_moisture.png" class="image">
+                                <div style="padding: 14px;">
+                                    <span>土壤温湿度传感器</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.humidity1_mean.last}}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('孔隙压传感器','pressure1_mean')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <img src="../../assets/img/sensor/pore_pressure.png" class="image">
+                                <div style="padding: 14px;">
+                                    <span>孔隙压传感器</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.pressure1_mean.last}}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('雨量计','rainfall_mean')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <img src="../../assets/img/sensor/rain.png" class="image">
+                                <div style="padding: 14px;">
+                                    <span>雨量计</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.rainfall_mean.last}}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('微震监测仪','illuminance_mean')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <img src="../../assets/img/sensor/microseism.png" class="image">
+                                <div style="padding: 14px;">
+                                    <span>微震监测仪</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.illuminance_mean.last}}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                    <el-col :span="4" style="padding:10px">
+                        <a style="cursor:hand" @click="handleShowSensor('不极化化电极','V1_mean')">
+                            <el-card :body-style="{ padding: '0px' }">
+                                <div style="padding: 14px;">
+                                    <span>不极化化电极</span>
+                                    <div class="bottom clearfix">
+                                        <el-form label-position="left" label-width="80px">
+                                            <el-form-item label="当前状态"><span>正常</span></el-form-item>
+                                            <el-form-item label="当前值"><span>{{sensorData.V1_mean.last}}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </a>
+                    </el-col>
+                </el-row>
                 <el-row>
                     <el-col :span="4" style="padding:10px">
                         <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
+                            <img src="../../assets/img/sensor/GNSS.png" class="image">
                             <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
+                                <span>GNSS位移监测仪</span>
                                 <div class="bottom clearfix">
                                     <el-form label-position="left" label-width="80px">
                                         <el-form-item label="当前状态"><span>正常</span></el-form-item>
@@ -52,10 +158,9 @@
                     </el-col>
                     <el-col :span="4" style="padding:10px">
                         <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
+                            <img src="../../assets/img/sensor/line.png" class="image">
                             <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
+                                <span>拉线式位移计</span>
                                 <div class="bottom clearfix">
                                     <el-form label-position="left" label-width="80px">
                                         <el-form-item label="当前状态"><span>正常</span></el-form-item>
@@ -67,55 +172,9 @@
                     </el-col>
                     <el-col :span="4" style="padding:10px">
                         <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
+                            <img src="../../assets/img/sensor/air_pressure.png" class="image">
                             <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
-                                <div class="bottom clearfix">
-                                    <el-form label-position="left" label-width="80px">
-                                        <el-form-item label="当前状态"><span>正常</span></el-form-item>
-                                        <el-form-item label="当前值"><span>6</span></el-form-item>
-                                    </el-form>
-                                </div>
-                            </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="4" style="padding:10px">
-                        <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
-                            <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
-                                <div class="bottom clearfix">
-                                    <el-form label-position="left" label-width="80px">
-                                        <el-form-item label="当前状态"><span>正常</span></el-form-item>
-                                        <el-form-item label="当前值"><span>6</span></el-form-item>
-                                    </el-form>
-                                </div>
-                            </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="4" style="padding:10px">
-                        <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
-                            <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
-                                <div class="bottom clearfix">
-                                    <el-form label-position="left" label-width="80px">
-                                        <el-form-item label="当前状态"><span>正常</span></el-form-item>
-                                        <el-form-item label="当前值"><span>6</span></el-form-item>
-                                    </el-form>
-                                </div>
-                            </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="4" style="padding:10px">
-                        <el-card :body-style="{ padding: '0px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                class="image">
-                            <div style="padding: 14px;">
-                                <span>空气温度传感器</span>
+                                <span>大气压传感器</span>
                                 <div class="bottom clearfix">
                                     <el-form label-position="left" label-width="80px">
                                         <el-form-item label="当前状态"><span>正常</span></el-form-item>
@@ -127,6 +186,16 @@
                     </el-col>
                 </el-row>
             </el-card>
+            <el-dialog :title="sensorDialog.title" :visible.sync="sensorDialog.visible" width="80%">
+                <el-form :inline="true" label-width="70px">
+                    <el-form-item label="最大值">{{sensorDialog.max}}</el-form-item>
+                    <el-form-item label="最小值">{{sensorDialog.min}}</el-form-item>
+                    <el-form-item label="平均值">{{sensorDialog.avg}}</el-form-item>
+                    <el-form-item label="当前值">{{sensorDialog.last}}</el-form-item>
+                </el-form>
+                <ve-line :data="chartData" :settings="chartSettings" :dataZoom="dataZoom"
+                    :not-set-unchange="['dataZoom']"></ve-line>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -134,16 +203,93 @@
 export default {
     data() {
         return {
-            location: "甘肃省",
+            showMap: true,
+            location: { lat: 35.78786946, lng: 103.98119978 },
             zoom: 7,
             addressKeyword: "",
-            mapType: "BMAP_NORMAL_MAP"
+            mapType: "BMAP_NORMAL_MAP",
+            sensorData: {
+                t1: {},
+                humidity1_mean: {},
+                pressure1_mean: {},
+                rainfall_mean: {},
+                illuminance_mean: {},
+                V1_mean: {}
+            },
+            sensorDialog: {
+                title: "空气温度传感器",
+                visible: false,
+                max: 0,
+                min: 0,
+                avg: 0,
+                last: 0
+            },
+            chartData: {
+                columns: ["date", "value"],
+                rows: []
+            },
+            chartSettings: {
+                min: ["dataMin", "dataMin"]
+            },
+            dataZoom: [
+                {
+                    show: true,
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                },
+                {
+                    type: "inside",
+                    realtime: true,
+                    start: 65,
+                    end: 85
+                }
+            ]
         };
     },
     mounted() {
-        this.baiduMap();
+        // this.baiduMap();
     },
-    methods: {}
+    created() {
+        this.searchSensors();
+    },
+    methods: {
+        searchSensors() {
+            this.getSensorData("t1");
+            this.getSensorData("humidity1_mean");
+            this.getSensorData("pressure1_mean");
+            this.getSensorData("rainfall_mean");
+            this.getSensorData("illuminance_mean");
+            this.getSensorData("V1_mean");
+        },
+        getSensorData(type) {
+            let param = {};
+            param.type = type;
+            param.hours = 1;
+            this.$axios
+                .post("/data/admin/data/getStatistic", param)
+                .then(res => {
+                    this.$set(this.sensorData, type, res.data.module);
+                });
+        },
+        handleShowSensor(title, type) {
+            this.sensorDialog.title = title;
+            this.sensorDialog.max = this.sensorData[type].max;
+            this.sensorDialog.min = this.sensorData[type].min;
+            this.sensorDialog.avg = this.sensorData[type].avg;
+            this.sensorDialog.last = this.sensorData[type].last;
+            this.sensorDialog.visible = true;
+            let param = {};
+            param.type = type;
+            param.hours = 1;
+            this.$axios.post("/data/admin/data/getSeries", param).then(res => {
+                this.$set(this.chartData, "rows", res.data.module);
+            });
+        },
+        markClick(){
+            this.showMap = false;
+        }
+    }
 };
 </script>
 <style>
@@ -157,5 +303,16 @@ export default {
 }
 .i-image {
     max-height: 150px;
+}
+.image {
+    max-width: 100%;
+    max-height: 100%;
+}
+.sensor-info .el-form-item {
+    margin-bottom: 5px;
+}
+
+.sensor-info .bottom {
+    margin-top: 15px;
 }
 </style>

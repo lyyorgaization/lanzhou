@@ -1,9 +1,10 @@
 package com.lucien.dap.data.server.mapper.extend;
 
 import com.lucien.dap.data.server.entity.extend.DataStatisticEntity;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataEntityExtendMapper {
-    DataStatisticEntity getStatistic(String column, Integer limit);
+    DataStatisticEntity getStatistic(@Param("column") String column, @Param("limit") Integer limit);
 
-    Float getLast(String column);
+    String getLast(@Param("column") String column);
 }

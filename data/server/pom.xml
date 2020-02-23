@@ -183,6 +183,12 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>16.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

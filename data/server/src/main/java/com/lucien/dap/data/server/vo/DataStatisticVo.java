@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class DataStatisticVo {
-    private Float max;
-    private Float min;
-    private Float avg;
-    private Float last;
+    private String max;
+    private String min;
+    private String avg;
+    private String last;
 }

@@ -809,73 +809,73 @@ public class SensorEntityExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceIsNull() {
-            addCriterion("interface is null");
+        public Criteria andJoggleIsNull() {
+            addCriterion("joggle is null");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceIsNotNull() {
-            addCriterion("interface is not null");
+        public Criteria andJoggleIsNotNull() {
+            addCriterion("joggle is not null");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceEqualTo(String value) {
-            addCriterion("interface =", value, "interface");
+        public Criteria andJoggleEqualTo(String value) {
+            addCriterion("joggle =", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceNotEqualTo(String value) {
-            addCriterion("interface <>", value, "interface");
+        public Criteria andJoggleNotEqualTo(String value) {
+            addCriterion("joggle <>", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceGreaterThan(String value) {
-            addCriterion("interface >", value, "interface");
+        public Criteria andJoggleGreaterThan(String value) {
+            addCriterion("joggle >", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceGreaterThanOrEqualTo(String value) {
-            addCriterion("interface >=", value, "interface");
+        public Criteria andJoggleGreaterThanOrEqualTo(String value) {
+            addCriterion("joggle >=", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceLessThan(String value) {
-            addCriterion("interface <", value, "interface");
+        public Criteria andJoggleLessThan(String value) {
+            addCriterion("joggle <", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceLessThanOrEqualTo(String value) {
-            addCriterion("interface <=", value, "interface");
+        public Criteria andJoggleLessThanOrEqualTo(String value) {
+            addCriterion("joggle <=", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceLike(String value) {
-            addCriterion("interface like", value, "interface");
+        public Criteria andJoggleLike(String value) {
+            addCriterion("joggle like", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceNotLike(String value) {
-            addCriterion("interface not like", value, "interface");
+        public Criteria andJoggleNotLike(String value) {
+            addCriterion("joggle not like", value, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceIn(List<String> values) {
-            addCriterion("interface in", values, "interface");
+        public Criteria andJoggleIn(List<String> values) {
+            addCriterion("joggle in", values, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceNotIn(List<String> values) {
-            addCriterion("interface not in", values, "interface");
+        public Criteria andJoggleNotIn(List<String> values) {
+            addCriterion("joggle not in", values, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceBetween(String value1, String value2) {
-            addCriterion("interface between", value1, value2, "interface");
+        public Criteria andJoggleBetween(String value1, String value2) {
+            addCriterion("joggle between", value1, value2, "joggle");
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceNotBetween(String value1, String value2) {
-            addCriterion("interface not between", value1, value2, "interface");
+        public Criteria andJoggleNotBetween(String value1, String value2) {
+            addCriterion("joggle not between", value1, value2, "joggle");
             return (Criteria) this;
         }
 
@@ -1054,8 +1054,8 @@ public class SensorEntityExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andInterfaceLikeInsensitive(String value) {
-            addCriterion("upper(interface) like", value.toUpperCase(), "interface");
+        public Criteria andJoggleLikeInsensitive(String value) {
+            addCriterion("upper(joggle) like", value.toUpperCase(), "joggle");
             return (Criteria) this;
         }
 

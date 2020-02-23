@@ -1,25 +1,28 @@
 package com.lucien.dap.data.server.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.google.common.base.CaseFormat;
 import com.lucien.dap.data.server.entity.DataEntity;
 import com.lucien.dap.data.server.entity.DataEntityExample;
 import com.lucien.dap.data.server.entity.extend.DataStatisticEntity;
 import com.lucien.dap.data.server.mapper.extend.DataEntityExtendMapper;
 import com.lucien.dap.data.server.mapper.generate.DataEntityMapper;
+import com.lucien.dap.data.server.service.DataService;
 import com.lucien.dap.data.server.vo.SeriesVo;
 import com.lucien.dap.framework.common.constants.RetEnum;
 import com.lucien.dap.framework.core.exception.ApplicationException;
-import com.lucien.dap.framework.core.utils.CollectionUtil;
-import jdk.nashorn.internal.ir.EmptyNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.lucien.dap.data.server.service.DataService;
 
-import java.lang.reflect.Field;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class DataServiceImpl implements DataService {
@@ -43,7 +46,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public Float getLast(String type) {
+    public String getLast(String type) {
         return entityExtendMapper.getLast(type);
     }
 
@@ -57,7 +60,9 @@ public class DataServiceImpl implements DataService {
         List<SeriesVo> listVo = new ArrayList<>();
         Method method;
         try {
-            method = DataEntity.class.getMethod("get" + type);
+//            byte[] items = type.getBytes();
+//            items[0] = (byte) ((char) items[0] - 'a' + 'A');//首字母大写
+            method = DataEntity.class.getMethod("get" + this.humpToLine2(type));
         } catch (NoSuchMethodException e) {
             throw new ApplicationException(RetEnum.SystemError);
         }
@@ -73,5 +78,9 @@ public class DataServiceImpl implements DataService {
             listVo.add(vo);
         }
         return listVo;
+    }
+
+    public String humpToLine2(String str) {
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, str);
     }
 }

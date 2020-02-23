@@ -7,6 +7,10 @@ module.exports = {
             '/omp': {
                 target: 'http://127.0.0.1:10010/',
                 changeOrigin: true
+            },
+            '/data':{
+                target: 'http://127.0.0.1:10020/',
+                changeOrigin: true
             }
         }
     },
