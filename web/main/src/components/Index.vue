@@ -12,9 +12,9 @@
                  style="margin-left:2.81vw" @click="openURL('/admin/sensor')">数据</el-button>
       <el-button class="menu"
                  type="text"
-                 style="margin-left:2.81vw" @click="openURL('/screen/index')">大屏</el-button>
+                 style="margin-left:2.81vw" @click="openURL('https://www.wulihub.com.cn/gc/WerjeQ/index.html?_d=Sun%20Mar%2001%202020%2019:08:10%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)')">大屏</el-button>
       <el-button class="login-button"
-                 type="text">登录</el-button>
+                 type="text" @click="openURL('/admin/login')">登录</el-button>
       <el-button class="register-button"
                  type="text">注册</el-button>
     </el-header>
