@@ -2,8 +2,8 @@
     <div class="wrapper">
         <v-head></v-head>
         <v-sidebar></v-sidebar>
-        <div class="content-box" :class="{'content-collapse':collapse}">
-            <v-tags></v-tags>
+        <div class="content-box" style="top:6.2vh" :class="{'content-collapse':collapse}">
+            <!-- <v-tags></v-tags> -->
             <div class="content">
                 <transition name="move" mode="out-in">
                     <keep-alive :include="tagsList">
@@ -46,3 +46,16 @@
         }
     }
 </script>
+<style>
+.content-box{
+    position: absolute;
+    left: 15.6vw;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    padding-bottom: 30px;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+    background: #f0f0f0;
+}
+</style>

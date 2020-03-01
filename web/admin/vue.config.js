@@ -1,15 +1,15 @@
 const webpack = require('webpack');
 module.exports = {
-    publicPath: './',
+    publicPath: '/admin/',
     productionSourceMap: false,
     devServer: {
         proxy: {
             '/omp': {
-                target: 'http://127.0.0.1:10010/',
+                target: 'http://119.3.5.25/',
                 changeOrigin: true
             },
             '/data': {
-                target: 'http://127.0.0.1:10020/',
+                target: 'http://119.3.5.25/',
                 changeOrigin: true
             }
         }

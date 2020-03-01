@@ -63,6 +63,7 @@ router.beforeEach((to, from, next) => {
     }
 });
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = '/'
 axios.interceptors.response.use(response => {
     if (response.data.code != 0) {
         ElementUI.Message({
@@ -71,7 +72,7 @@ axios.interceptors.response.use(response => {
         });
         if (response.data.code === 105) {
             localStorage.setItem("ms_username", "");
-            window.location.href = "/login";
+            this.$router.push('/login');
         }
         return Promise.reject(response.data.msg);
     } else {

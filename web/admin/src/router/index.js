@@ -4,6 +4,7 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
+    base: 'admin',
     mode: 'history',
     routes: [{
             path: '/',
@@ -15,7 +16,29 @@ export default new Router({
             meta: {
                 title: '自述文件'
             },
-            children: [{
+            children: [
+                {
+                    path:'map',
+                    component: resolve => require(['../components/page/jiance/Map.vue'], resolve),
+                    meta: {
+                        title: '地图'
+                    }
+                },
+                {
+                    path:'sensor',
+                    component: resolve => require(['../components/page/jiance/Sensor.vue'], resolve),
+                    meta: {
+                        title: '皋兰山监测站'
+                    }
+                },
+                {
+                    path:'sensorList',
+                    component: resolve => require(['../components/page/jiance/SensorList.vue'], resolve),
+                    meta: {
+                        title: '皋兰山监测站'
+                    }
+                },
+                {
                     path: 'index',
                     component: resolve => require(['../components/common/Index.vue'], resolve),
                     meta: {
