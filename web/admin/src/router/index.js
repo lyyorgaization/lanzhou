@@ -35,7 +35,14 @@ export default new Router({
                     path:'sensorList',
                     component: resolve => require(['../components/page/jiance/SensorList.vue'], resolve),
                     meta: {
-                        title: '皋兰山监测站'
+                        title: '监测站列表'
+                    }
+                },
+                {
+                    path:'qixiang',
+                    component: resolve => require(['../components/page/jiance/qixiang.vue'], resolve),
+                    meta: {
+                        title: '皋兰山氣象站'
                     }
                 },
                 {

@@ -13,9 +13,27 @@
             皋兰山滑坡泥石流5号监测站
           </h1>
           <div style="display:flex;  align-items: center;  justify-content: center;margin-top:5.9vh">
-            <div class="work work_1" @click="goSensor">工作中</div>
-            <div class="work work_2">工作中</div>
-            <div class="work work_3">工作中</div>
+            <div class="work work_1"
+                 @click="goQixaing(18052300079101)">
+              <div class="block">
+                <el-image :src="work_img_1"></el-image>
+                <span class="demonstration">工作中</span>
+              </div>
+            </div>
+            <div class="work work_2"
+                 @click="goSensor">
+              <div class="block">
+                <el-image :src="work_img_2"></el-image>
+                <span class="demonstration">工作中</span>
+              </div>
+            </div>
+            <div class="work work_3"
+                 @click="goSensor">
+              <div class="block">
+                <el-image :src="work_img_3"></el-image>
+                <span class="demonstration">工作中</span>
+              </div>
+            </div>
           </div>
         </el-card>
       </el-col>
@@ -29,26 +47,38 @@
           <h1>
             皋兰山环境气象站
           </h1>
-          <div>
+          <div >
             <el-row type="flex"
                     justify="space-around"
                     style="padding-left:2.6vw;padding-right:2.6vw;margin-top:7.5vh;">
-              <el-col class="data work_1"
-                      :span="6">工作中</el-col>
-              <el-col class="data work_2"
-                      :span="6">工作中</el-col>
-              <el-col class="data work_3"
-                      :span="6">工作中</el-col>
+              <el-col class="data data_1"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_1"></el-image>14.67℃
+              </el-col>
+              <el-col class="data data_2"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_2"></el-image>16.14%
+              </el-col>
+              <el-col class="data data_3"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_3"></el-image>0.73m/s
+              </el-col>
             </el-row>
             <el-row type="flex"
                     justify="space-around"
                     style="padding-left:2.6vw;padding-right:2.6vw;margin-top:1.66vh">
-              <el-col class="data work_1"
-                      :span="6">工作中</el-col>
-              <el-col class="data work_2"
-                      :span="6">工作中</el-col>
-              <el-col class="data work_3"
-                      :span="6">工作中</el-col>
+              <el-col class="data data_4"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_4"></el-image>东风
+              </el-col>
+              <el-col class="data data_5"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_5"></el-image>0.0mm
+              </el-col>
+              <el-col class="data data_6"
+                      :span="6" @click.native="goQixaing(18012200073687)">
+                <el-image :src="data_img_6"></el-image>790.29hPa
+              </el-col>
             </el-row>
           </div>
         </el-card>
@@ -58,15 +88,34 @@
 </template>
 <script>
 export default {
-    methods:{
-        goSensor(){
-            this.$router.push("/sensor");
-        }
+  data() {
+    return {
+      work_img_1: require("@/assets/img/icon/订单_03.png"),
+      work_img_2: require("@/assets/img/icon/水滴.png"),
+      work_img_3: require("@/assets/img/icon/安全-03.png"),
+      data_img_1: require("@/assets/img/icon/温度.png"),
+      data_img_2: require("@/assets/img/icon/形状.png"),
+      data_img_3: require("@/assets/img/icon/风扇.png"),
+      data_img_4: require("@/assets/img/icon/风向.png"),
+      data_img_5: require("@/assets/img/icon/小水滴.png"),
+      data_img_6: require("@/assets/img/icon/能源.png")
+    };
+  },
+  methods: {
+    goSensor() {
+      this.$router.push("/sensor");
+    },
+    goQixaing(sn) {
+      this.$router.push({ path: "/qixiang", query: { sn: sn } });
     }
-}
+  }
+};
 </script>
 <style>
 .el-card__header {
+  padding: 0px;
+}
+.el-card__body {
   padding: 0px;
 }
 .card_header_title {
@@ -97,16 +146,26 @@ export default {
 .work {
   display: flex;
   border-radius: 4px;
-  width: 18.5vh;
-  height: 20.18vh;
-  align-items: center;
-  justify-items: center;
+  width: 10.4vw;
+  height: 11.3vw;
   justify-content: center;
   font-size: 2.22vh;
   font-family: SorceHanSansCN;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
+}
+
+.work .block {
+  width: 3.33vw;
+  height: 3.95vw;
+}
+
+.work img {
+  /* width: 3.33vw; */
+  height: 3.95vw;
+  margin-bottom: 0.125vw;
+  margin-top: 2.6vw;
 }
 
 .work_1 {
@@ -135,16 +194,71 @@ export default {
 }
 
 .data {
-  width: 18.5vh;
-  height: 9.25vh;
+  width: 10.4vw;
+  height: 5.2vw;
   border-radius: 4px;
   display: flex;
   align-items: center;
-  justify-items: center;
-  justify-content: center;
+  /* justify-items: center; */
+  /* justify-content: center; */
   font-size: 2.22vh;
   font-family: SorceHanSansCN;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+.data img {
+  width: 2.29vw;
+  height: 2.91vw;
+  margin-left: 1.4vw;
+}
+
+.data_1 {
+  background: linear-gradient(
+    16deg,
+    rgba(1, 177, 251, 1),
+    rgba(65, 132, 255, 1)
+  );
+}
+
+.data_2 {
+  background: linear-gradient(
+    -70deg,
+    rgba(0, 198, 196, 1),
+    rgba(3, 225, 212, 1)
+  );
+}
+
+.data_3 {
+  background: linear-gradient(
+    16deg,
+    rgba(255, 114, 0, 1),
+    rgba(237, 36, 69, 1)
+  );
+}
+
+.data_4 {
+  background: linear-gradient(
+    16deg,
+    rgba(155, 120, 255, 1),
+    rgba(87, 87, 223, 1)
+  );
+}
+
+.data_5 {
+  background: linear-gradient(
+    46deg,
+    rgba(255, 216, 0, 1),
+    rgba(255, 108, 0, 1)
+  );
+}
+
+.data_6 {
+  background: linear-gradient(
+    218deg,
+    rgba(84, 186, 44, 1),
+    rgba(149, 246, 91, 1)
+  );
 }
 </style>

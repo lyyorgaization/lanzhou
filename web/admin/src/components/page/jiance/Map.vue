@@ -8,7 +8,7 @@
                  :center="location"
                  :zoom="zoom"
                  ak="W3snqVzGLE554YKO8azARWwWpG5vKYqI">
-        <bm-boundary name="甘肃省"
+        <bm-boundary name="甘肃省兰州市城关区"
                      :strokeWeight="2"
                      strokeColor="blue"
                      :fillOpacity="0"></bm-boundary>
@@ -37,8 +37,8 @@
 export default {
   data() {
     return {
-      location: { lat: 35.78786946, lng: 103.98119978 },
-      zoom: 15,
+      location: { lat: 36.0303295500, lng: 103.8436167400 },
+      zoom: 12,
       addressKeyword: "",
       mapType: "BMAP_SATELLITE_MAP",
       glsUrl: require("../../../assets/img/gaolanshan.jpg"),

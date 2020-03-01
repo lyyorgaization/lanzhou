@@ -44,7 +44,7 @@
               <el-row>
                 <el-col :span="12"
                         class="item item-left">
-                  <img src="@/assets/img/icon/jiancezhan.jpg" />
+                  <img src="@/assets/img/icon/自动监测站.png" />
                   <div style="display:inline-block">
                     <span class="count">1</span>
                     <br />
@@ -54,7 +54,7 @@
                 <el-col :span="12"
                         class="item"
                         style="background:linear-gradient(46deg,rgba(255,216,0,1),rgba(255,108,0,1));">
-                  <img src="@/assets/img/icon/shebei.jpg" />
+                  <img src="@/assets/img/icon/shebei.png" />
                   <div style="display:inline-block">
                     <span class="count">17</span>
                     <br />
@@ -66,7 +66,7 @@
                 <el-col :span="12"
                         class="item  item-left"
                         style="background:linear-gradient(16deg,rgba(155,120,255,1),rgba(87,87,223,1));">
-                  <img src="@/assets/img/icon/days.jpg" />
+                  <img src="@/assets/img/icon/数据采集.png" />
                   <div style="display:inline-block">
                     <span class="count">2240</span>
                     <br />
@@ -76,7 +76,7 @@
                 <el-col :span="12"
                         class="item"
                         style="background:linear-gradient(218deg,rgba(84,186,44,1),rgba(149,246,91,1));">
-                  <img src="@/assets/img/icon/data.png" />
+                  <img src="@/assets/img/icon/数据.png" />
                   <div style="display:inline-block">
                     <span class="count">1427</span>
                     <br />
@@ -88,7 +88,7 @@
                 <el-col :span="12"
                         class="item  item-left"
                         style="background:linear-gradient(-70deg,rgba(0,198,196,1),rgba(3,225,212,1))">
-                  <img src="@/assets/img/icon/zhengchang.jpg" />
+                  <img src="@/assets/img/icon/动态监测.png" />
                   <div style="display:inline-block">
                     <span class="count">127</span>
                     <br />
@@ -98,7 +98,7 @@
                 <el-col :span="12"
                         class="item"
                         style="background:linear-gradient(16deg,rgba(255,114,0,1),rgba(237,36,69,1));">
-                  <img src="@/assets/img/icon/alarm.png" />
+                  <img src="@/assets/img/icon/预警.png" />
                   <div style="display:inline-block">
                     <span class="count"
                           style="color:#FFF">1</span>

@@ -11,6 +11,9 @@ module.exports = {
             '/data': {
                 target: 'http://119.3.5.25/',
                 changeOrigin: true
+            },
+            "/openapi.ecois.info": {
+                target: 'http://openapi.ecois.info/'
             }
         }
     },

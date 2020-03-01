@@ -24,7 +24,7 @@ Vue.use(ElementUI, {
 Vue.use(BaiduMap, {
     // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
     ak: 'W3snqVzGLE554YKO8azARWwWpG5vKYqI'
-  })
+})
 
 import VueDND from "awe-dnd";
 Vue.use(VueDND);
@@ -65,19 +65,22 @@ router.beforeEach((to, from, next) => {
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = '/'
 axios.interceptors.response.use(response => {
-    if (response.data.code != 0) {
-        ElementUI.Message({
-            message: response.data.msg,
-            type: "error"
-        });
-        if (response.data.code === 105) {
-            localStorage.setItem("ms_username", "");
-            this.$router.push('/login');
+    if (response.request.responseURL.indexOf("openapi.ecois.info") == -1) {
+        if (response.data.code != 0) {
+            ElementUI.Message({
+                message: response.data.msg,
+                type: "error"
+            });
+            if (response.data.code === 105) {
+                localStorage.setItem("ms_username", "");
+                this.$router.push('/login');
+            }
+            return Promise.reject(response.data.msg);
+        } else {
+            return response;
         }
-        return Promise.reject(response.data.msg);
-    } else {
-        return response;
     }
+    return response;
 }, err => {
     if (err && err.response) {
         switch (err.response.status) {
