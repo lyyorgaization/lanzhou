@@ -3,35 +3,49 @@
     <el-row>
       <el-col :span="12"
               style="padding-right:5px">
-        <el-card body-style="height:45.64vh">
+        <el-card body-style="height:25.67vw">
           <div slot="header"
                style="display:flex">
             <!-- <div class="card_header_pre">&nbsp;</div> -->
             <div class="card_header_title">简介</div>
           </div>
           <h1 style="font-size:2.68vh;font-family:SourceHanSansCN;font-weight:bold;color:rgba(24,24,24,1);line-height:53px;">皋兰山地质环境监测站</h1>
-          <el-carousel :interval="4000"
-                       type="card"
-                       height="9.16vh">
-            <el-carousel-item v-for="(item,index) in 3"
-                              :key="item">
-              <img :src="getImageUrl(index)"
-                   class="i-image" />
-            </el-carousel-item>
-          </el-carousel>
-          <div style="font-size:1.29vh">
+          <div style="display:flex;justify-content:center">
+            <el-image class="i-image"
+                      v-for="image in srcList"
+                      :key="image"
+                      :src="image"
+                      :preview-src-list="srcList"
+                      fit="contain">
+            </el-image>
+          </div>
+          <div style="font-size:0.9vw">
             <p>
               一、皋兰山地质环境监测站简介</p>
             <p>
               甘肃工程地质研究院皋兰山地质环境监测站位于兰州市城区南侧，皋兰山以东，城关区皋兰山乡民族村以北，交通便利，沟口为南山陵园墓区，沟前为兰州火车站区域。站内老狼沟为典型的黄土沟壑区地貌，沟谷南北走向，西侧发育两条支沟，沟道切割严重。沟道内高程起伏大，陡坡发育，植被整体不发育，且沟道内分布大量松散堆积物，为降雨诱发滑坡和泥石流提供重要的基础。沟内发育滑坡91处，其中旋转式滑动49处，平移滑动37处，崩塌有5处，是研究地质灾害滑坡的天然实验室...
             </p>
           </div>
-          <el-button style="margin-top:3.6vh;background:linear-gradient(77deg,rgba(0,157,236,1) 0%,rgba(35,188,255,1) 100%);box-shadow:0px 2px 7px 0px rgba(35,188,255,0.39);border-radius:4px;">更多详情</el-button>
+          <el-button @click="intro_visible=true" style="margin-top:3.6vh;background:linear-gradient(77deg,rgba(0,157,236,1) 0%,rgba(35,188,255,1) 100%);box-shadow:0px 2px 7px 0px rgba(35,188,255,0.39);border-radius:4px;">更多详情</el-button>
         </el-card>
+        <el-dialog :visible.sync="intro_visible"
+                   width="76vw"
+                   top="5vw">
+          <div slot="title"
+               class="dialog_head">
+            详情介绍
+          </div>
+          <div>
+            <el-image fit="contain" :src="require('@/assets/img/gaolanshan_sensor.png')">
+
+            </el-image>
+            <p>甘肃工程地质研究院皋兰山地质环境监测站位于兰州市城区南侧，皋兰山以东，城关区皋兰山乡民族村以北，交通便利，沟口为南山陵园墓区，沟前为兰州火车站区域。站内老狼沟为典型的黄土沟壑区地貌，沟谷南北走向，西侧发育两条支沟，沟道切割严重。沟道内高程起伏大，陡坡发育，植被整体不发育，且沟道内分布大量松散堆积物，为降雨诱发滑坡和泥石流提供重要的基础。沟内发育滑坡91处，其中旋转式滑动49处，平移滑动37处，崩塌有5处，是研究地质灾害滑坡的天然实验室...</p>
+          </div>
+        </el-dialog>
       </el-col>
       <el-col :span="12"
               style="padding-left:5px">
-        <el-card body-style="padding:0;height:45.64vh">
+        <el-card body-style="padding:0;height:25.67vw">
           <div slot="header"
                style="display:flex">
             <div class="card_header_title">数据总览</div>
@@ -114,11 +128,11 @@
                          :settings="ringSetting"
                          legend-position="bottom"
                          :title="{text:'设备传感器占比'}"
-                         height="18.6vh"></ve-ring>
+                         height="10.46vw"></ve-ring>
               </div>
               <div>
                 <ve-line :xAixs="{boundaryGap :false}"
-                         height="36.9vh"
+                         height="20.75vw"
                          :data="lineData"
                          :settings="lineSetting"
                          :title="{text:'布置设备数'}"></ve-line>
@@ -170,7 +184,7 @@
               <img src="@/assets/img/sensor/soil_moisture.png"
                    class="image" />
               <div style="padding: 14px;"
-                  :class="[sensorActive=='humidity1_mean'?'sensor_info_check':'sensor_info']">
+                   :class="[sensorActive=='humidity1_mean'?'sensor_info_check':'sensor_info']">
                 <span>土壤温湿度传感器</span>
                 <div class="bottom clearfix">
                   <el-form label-position="left"
@@ -289,69 +303,70 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-dialog :title="sensorDialog.title"
-               :visible.sync="sensorDialog.visible"
-               width="90%">
-      <el-row style="padding-left:62px;padding-right:62px;display:flex">
+    <el-dialog :visible.sync="sensorDialog.visible"
+               width="76vw"
+               top="5vw">
+      <div slot="title"
+           class="dialog_head">
+        {{sensorDialog.title}}
+      </div>
+      <el-row class="summary">
         <el-col :span="6"
                 style="display: flex;    align-items: center;">
-          <img style="width: 53px; height: 53px"
-               src="@/assets/img/icon/max.jpg" />
-          <div style="padding-left:15px;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
+          <img src="@/assets/img/icon/max.jpg" />
+          <div style="padding-left:15px;font-size:0.08vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
             最小
             <br />
-            <span style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.max}}</span>
+            <span style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.max}}</span>
           </div>
         </el-col>
         <el-col :span="6"
                 style="display: flex;    align-items: center;">
-          <img style="width: 53px; height: 53px"
-               src="@/assets/img/icon/min.jpg" />
-          <div style="padding-left:15px;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
+          <img src="@/assets/img/icon/min.jpg" />
+          <div style="padding-left:15px;font-size:0.08vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
             最小
             <br />
-            <span style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.min}}</span>
+            <span style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.min}}</span>
           </div>
         </el-col>
         <el-col :span="6"
                 style="display: flex;    align-items: center;">
-          <img style="width: 53px; height: 53px"
-               src="@/assets/img/icon/avg.jpg" />
-          <div style="padding-left:15px;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
+          <img src="@/assets/img/icon/avg.jpg" />
+          <div style="padding-left:15px;font-size:0.08vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
             最小
             <br />
-            <span style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.avg}}</span>
+            <span style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.avg}}</span>
           </div>
         </el-col>
         <el-col :span="6"
                 style="display: flex;    align-items: center;">
-          <img style="width: 53px; height: 53px"
-               src="@/assets/img/icon/ct.jpg" />
-          <div style="padding-left:15px;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
+          <img src="@/assets/img/icon/ct.jpg" />
+          <div style="padding-left:15px;font-size:0.8vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1)">
             最小
             <br />
-            <span style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.last}}</span>
+            <span style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1)">{{sensorDialog.last}}</span>
           </div>
         </el-col>
       </el-row>
-      <el-row style="margin-top:20px">
+      <el-row style="margin-top:20px"
+              class="info">
         <el-col :span="6">
-          <el-image style="width: 307px; height: 331px"
+          <el-image style="width: 16vw; height: 17vw"
                     :src="require('@/assets/img/sensor/pore_pressure.png')"></el-image>
         </el-col>
         <el-col :span="18"
                 style="padding-left:37px">
-          <div style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">功能</div>
-          <p style="margin-top:13px;margin-bottom:13px;font-size:14px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1);">使用高精度、高灵敏度和高可靠性MEMS孔隙水压力传感器，监控孔隙压力压力的变化；支持各种接口的数据采集仪；先进的技术，更高的精度， 实现了孔隙压监测自动化、简单化。</p>
-          <div style="font-size:18px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">指标</div>
+          <div style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">功能</div>
+          <p style="margin-top:13px;margin-bottom:13px;font-size:0.7vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(140,140,140,1);">使用高精度、高灵敏度和高可靠性MEMS孔隙水压力传感器，监控孔隙压力压力的变化；支持各种接口的数据采集仪；先进的技术，更高的精度， 实现了孔隙压监测自动化、简单化。</p>
+          <div style="font-size:0.9vw;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">指标</div>
           <el-row style="margin-top:13px"
                   class="quota">
             <el-col :span="12">
-              <el-card body-style="padding-top:0;padding-bottom:0">
+              <el-card body-style="padding:0">
                 <div slot="header">
-                  <div style="padding-left:13px;height:27px;line-height:27px;background-color:#C0C2C8;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">物理特性</div>
+                  <div class="info_title">物理特性</div>
                 </div>
-                <el-form label-width="100px"
+                <el-form label-width="5.2vw"
                          label-position="left">
                   <el-form-item label="尺寸">
                     <span>自定义</span>
@@ -368,7 +383,7 @@
             <el-col :span="12">
               <el-card body-style="padding-top:0;padding-bottom:0">
                 <div slot="header">
-                  <div style="padding-left:13px;height:27px;line-height:27px;background-color:#C0C2C8;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">量程</div>
+                  <div class="info_title">量程</div>
                 </div>
                 <el-form label-width="100px"
                          label-position="left">
@@ -387,11 +402,11 @@
           </el-row>
           <el-row class="quota">
             <el-col :span="12">
-              <el-card body-style="padding-top:0;padding-bottom:0">
+              <el-card body-style="padding:0">
                 <div slot="header">
-                  <div style="padding-left:13px;height:27px;line-height:27px;background-color:#C0C2C8;font-size:16px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(51,51,51,1);">电气指示</div>
+                  <div class="info_title">电气指示</div>
                 </div>
-                <el-form label-width="100px"
+                <el-form label-width="5.2vw"
                          label-position="left">
                   <el-form-item label="电压">
                     <span>8-24V</span>
@@ -408,7 +423,8 @@
       <ve-line :data="chartData"
                :settings="chartSettings"
                :dataZoom="dataZoom"
-               :not-set-unchange="['dataZoom']"></ve-line>
+               :not-set-unchange="['dataZoom']"
+               height="14.8vw"></ve-line>
     </el-dialog>
   </div>
 </template>
@@ -416,7 +432,12 @@
 export default {
   data() {
     return {
-      showMap: true,
+      srcList: [
+        require("@/assets/img/jiance1.jpg"),
+        require("@/assets/img/jiance2.jpg"),
+        require("@/assets/img/jiance3.jpg")
+      ],
+      intro_visible:false,
       location: { lat: 35.78786946, lng: 103.98119978 },
       zoom: 7,
       addressKeyword: "",
@@ -560,12 +581,10 @@ export default {
 };
 </script>
 <style>
-.el-carousel--horizontal {
-  overflow-x: hidden;
-  padding-left: 6vw;
-}
 .i-image {
-  max-height: 9.16vh;
+  height: 5.1vw;
+  max-width: 6.8vw;
+  margin-right: 1.3vw;
 }
 .image {
   max-width: 100%;
@@ -583,19 +602,19 @@ export default {
 }
 .card_header_title {
   display: inline-block;
-  font-size: 1.8vh;
+  font-size: 1.01vw;
   font-family: SourceHanSansCN;
   font-weight: bold;
   color: #fff;
-  line-height: 5vh;
+  line-height: 2.81vw;
   background: linear-gradient(
     0deg,
     rgba(31, 119, 242, 1) 0%,
     rgba(47, 193, 229, 1) 100%
   );
   width: 6.93vw;
-  height: 5vh;
-  text-align: center;
+  height: 2.81vw;
+  text-align:center;
 }
 .data_overview {
   margin-left: 1.19vw;
@@ -605,14 +624,14 @@ export default {
   display: flex;
   align-items: center;
   width: 7.9vw;
-  height: 9.6vh;
+  height: 5.4vw;
   background: linear-gradient(
     16deg,
     rgba(1, 177, 251, 1),
     rgba(65, 132, 255, 1)
   );
   border-radius: 4px;
-  margin-top: 4.72vh;
+  margin-top: 2.7vw;
 }
 .data_overview .item-left {
   margin-right: 3.28vw;
@@ -620,8 +639,8 @@ export default {
 
 .data_overview .item img {
   max-width: 1.6vw;
-  max-height: 3.14vh;
-  margin-left: 1.85vw;
+  max-height: 1.7vw;
+  margin-left: 1.3vw;
 }
 .data_overview .item .count {
   font-size: 3.14vh;
@@ -661,5 +680,50 @@ export default {
 } */
 .quota .el-form-item {
   margin-bottom: 0;
+}
+
+.dialog_head {
+  height: 2.5vw;
+  font-size: 1.09vw;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+}
+
+.el-dialog__body {
+  padding-top: 0;
+  padding-left: 6.7vw;
+  color: #606266;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.summary {
+  margin-top: 1.3vw;
+  padding-left: 62px;
+  padding-right: 62px;
+  display: flex;
+}
+
+.summary img {
+  width: 2.7vw;
+  height: 2.7vw;
+}
+.info .info_title {
+  height: 0.8vw;
+  line-height: 27px;
+  font-size: 0.8vw;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  display: flex;
+  align-items: center;
+}
+
+.info span {
+  font-size: 0.8vw;
+}
+
+.info label {
+  font-size: 0.8vw;
 }
 </style>
